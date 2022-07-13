@@ -47,17 +47,17 @@ class MyApp extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      _buildProjects(),
+                      _buildProjects('Build-A-Page'),
                       SizedBox(width: 12),
-                      _buildProjects(),
+                      _buildProjects('Code-Quiz'),
                       SizedBox(width: 12),
-                      _buildProjects(),
+                      _buildProjects('Comet-Watch'),
                       SizedBox(width: 12),
-                      _buildProjects(),
+                      _buildProjects('Wander-View'),
                       SizedBox(width: 12),
-                      _buildProjects(),
+                      _buildProjects('Weather-Dashboard'),
                       SizedBox(width: 12),
-                      _buildProjects(),
+                      _buildProjects('Workday-Scheduler'),
                       SizedBox(width: 12),
                     ],
                   ),
@@ -242,7 +242,7 @@ Row _buildSkillRow(String skill, double level) {
   );
 }
 
-Widget _buildProjects() => Container(
+Widget _buildProjects(image) => Container(
       width: 250,
       height: 165,
       decoration: BoxDecoration(
@@ -251,10 +251,10 @@ Widget _buildProjects() => Container(
       ),
       child: Column(
         children: [
-          Image.network('https://i.ibb.co/rvkpNkH/Wander-View.jpg'),
+          Image.asset("/projectimages/$image.jpg"),
           const SizedBox(height: 8),
           Text(
-            'WanderView',
+            image.toString().replaceAll('-', ' '),
             style: TextStyle(fontSize: 16),
           ),
         ],
