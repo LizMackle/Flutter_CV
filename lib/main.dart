@@ -251,7 +251,7 @@ Widget _buildProjects(image) => Container(
       ),
       child: Column(
         children: [
-          Image.asset("/projectimages/$image.jpg"),
+          Image.asset("assets/projectimages/$image.jpg"),
           const SizedBox(height: 8),
           Text(
             image.toString().replaceAll('-', ' '),
