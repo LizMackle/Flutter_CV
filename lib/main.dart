@@ -27,37 +27,73 @@ class MyApp extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.all(16.0),
                 padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(color: Colors.grey.shade200),
+                decoration: BoxDecoration(color: Color(0xFFEEEEEE)),
                 child: Text(
                   "A highly competent individual who is dedicated, enthusiastic and hardworking with a proven ability to work proactively in a complex and busy environment. \nA reliable employee who can demonstrate effective communication and multi-tasking skills in the workplace. \nA quick learner with a highly organised personality who can absorb new tasks and take on new challenges with a positive attitude.",
                   style: TextStyle(fontSize: 16),
                 ),
               ),
               _buildCVTitle("Skills"),
-              SizedBox(height: 5.0),
-              _buildSkillRow("React JS", 0.65),
-              SizedBox(height: 5.0),
-              _buildSkillRow("Flutter", 0.4),
-              SizedBox(height: 30.0),
-              _buildCVTitle("Projects"),
               Container(
-                height: 200,
-                padding: EdgeInsets.only(right: 20, left: 20),
+                height: 100,
+                padding: EdgeInsets.only(top: 10, right: 20, left: 20),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      _buildSkillRow('HTML'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('CSS'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('Bootstrap'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('Tailwind'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('Git'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('VScode'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('Javascript'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('Flutter'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('React'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('MongoDB'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('NodeJS'),
+                      SizedBox(width: 12),
+                      _buildSkillRow('MySQL'),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 10.0),
+              _buildCVTitle("Projects"),
+              Container(
+                height: 220,
+                padding: EdgeInsets.only(right: 20, left: 20, top: 10),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _buildProjects('Wander-View'),
+                      SizedBox(width: 12),
+                      _buildProjects('Comet-Watch'),
+                      SizedBox(width: 12),
                       _buildProjects('Build-A-Page'),
                       SizedBox(width: 12),
                       _buildProjects('Code-Quiz'),
                       SizedBox(width: 12),
-                      _buildProjects('Comet-Watch'),
-                      SizedBox(width: 12),
-                      _buildProjects('Wander-View'),
-                      SizedBox(width: 12),
                       _buildProjects('Weather-Dashboard'),
                       SizedBox(width: 12),
                       _buildProjects('Workday-Scheduler'),
+                      SizedBox(width: 12),
+                      _buildProjects('Tech-Blog'),
+                      SizedBox(width: 12),
+                      _buildProjects('Password-Generator'),
+                      SizedBox(width: 12),
+                      _buildProjects('Note-Taker'),
                       SizedBox(width: 12),
                     ],
                   ),
@@ -220,42 +256,39 @@ Widget _buildCVTitle(String title) {
   );
 }
 
-Row _buildSkillRow(String skill, double level) {
-  return Row(
-    children: <Widget>[
-      SizedBox(width: 16.0),
-      Expanded(
-          flex: 2,
-          child: Text(
-            skill.toUpperCase(),
-            textAlign: TextAlign.right,
-          )),
-      SizedBox(width: 10.0),
-      Expanded(
-        flex: 5,
-        child: LinearProgressIndicator(
-          value: level,
-        ),
-      ),
-      SizedBox(width: 16.0),
-    ],
-  );
-}
-
-Widget _buildProjects(image) => Container(
-      width: 250,
-      height: 165,
+Widget _buildSkillRow(image) => Container(
+      width: 70,
+      height: 100,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Color(0xFFC7BEC1),
+        // borderRadius: BorderRadius.circular(20),
+        color: Colors.transparent,
       ),
       child: Column(
         children: [
-          Image.asset("assets/projectimages/$image.jpg"),
+          Image.asset("assets/skills-images/$image.jpg"),
+          const SizedBox(height: 2),
+          // Text(
+          //   image.toString().replaceAll('-', ' '),
+          //   style: TextStyle(fontSize: 12),
+          // ),
+        ],
+      ),
+    );
+
+Widget _buildProjects(image) => Container(
+      width: 250,
+      height: 200,
+      decoration: BoxDecoration(
+        // borderRadius: BorderRadius.circular(10),
+        color: Colors.transparent,
+      ),
+      child: Column(
+        children: [
+          Image.asset("assets/project-images/$image.jpg"),
           const SizedBox(height: 8),
           Text(
             image.toString().replaceAll('-', ' '),
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -281,7 +314,7 @@ ListTile _buildExperienceRow(
           fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
     ),
     subtitle:
-        Text(style: TextStyle(fontSize: 15), "$position ($duration) $tasks"),
+        Text(style: TextStyle(fontSize: 15), "$position $duration $tasks"),
   );
 }
 
