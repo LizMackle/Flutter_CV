@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
-// import 'package:flutter/cupertino.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'widgets/header.dart';
+import 'widgets/titles.dart';
+import 'widgets/skills_row.dart';
+// import 'widgets/projects_row.dart';
+import 'widgets/education.dart';
+import 'widgets/experience.dart';
+import 'widgets/socials.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,6 +16,27 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  Container MyProjects(String image, String title) {
+    return Container(
+      width: 230,
+      child: Card(
+        child: Wrap(
+          children: <Widget>[
+            Image.asset(image),
+            ListTile(
+              title: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,87 +51,104 @@ class MyApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              _Header(),
+              SizedBox(height: 10.0),
+              Header(),
               Container(
                 margin: const EdgeInsets.all(16.0),
                 padding: const EdgeInsets.all(20.0),
                 decoration: BoxDecoration(color: Color(0xFFEEEEEE)),
                 child: Text(
-                  "A highly competent individual who is dedicated, enthusiastic and hardworking with a proven ability to work proactively in a complex and busy environment. \nA reliable employee who can demonstrate effective communication and multi-tasking skills in the workplace. \nA quick learner with a highly organised personality who can absorb new tasks and take on new challenges with a positive attitude.",
+                  "A passionate certified Full Stack Web Developer who is highly competent, dedicated, and hardworking with a proven ability to work proactively in a complex and busy environment. \n\nI’m a reliable individual, with a highly organised personality who can demonstrate effective communication and multi-tasking skills in the workplace and can absorb new tasks and take on challenges with a positive attitude.",
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              _buildCVTitle("Skills"),
+              CVTitle("Skills"),
               Container(
-                height: 100,
+                height: 120,
                 padding: EdgeInsets.only(top: 10, right: 20, left: 20),
                 child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      _buildSkillRow('HTML'),
+                      SkillsRow('HTML'),
                       SizedBox(width: 12),
-                      _buildSkillRow('CSS'),
+                      SkillsRow('CSS'),
                       SizedBox(width: 12),
-                      _buildSkillRow('Bootstrap'),
+                      SkillsRow('Bootstrap'),
                       SizedBox(width: 12),
-                      _buildSkillRow('Tailwind'),
+                      SkillsRow('Tailwind'),
                       SizedBox(width: 12),
-                      _buildSkillRow('Git'),
+                      SkillsRow('Javascript'),
                       SizedBox(width: 12),
-                      _buildSkillRow('VScode'),
+                      SkillsRow('JQuery'),
                       SizedBox(width: 12),
-                      _buildSkillRow('Javascript'),
+                      SkillsRow('Git'),
                       SizedBox(width: 12),
-                      _buildSkillRow('Flutter'),
+                      SkillsRow('VScode'),
                       SizedBox(width: 12),
-                      _buildSkillRow('React'),
+                      SkillsRow('Flutter'),
                       SizedBox(width: 12),
-                      _buildSkillRow('MongoDB'),
+                      SkillsRow('React'),
                       SizedBox(width: 12),
-                      _buildSkillRow('NodeJS'),
+                      SkillsRow('MongoDB'),
                       SizedBox(width: 12),
-                      _buildSkillRow('MySQL'),
+                      SkillsRow('NodeJS'),
+                      SizedBox(width: 12),
+                      SkillsRow('MySQL'),
                     ],
                   ),
                 ),
               ),
               SizedBox(height: 10.0),
-              _buildCVTitle("Projects"),
+              CVTitle("Projects"),
               Container(
-                height: 220,
-                padding: EdgeInsets.only(right: 20, left: 20, top: 10),
-                child: SingleChildScrollView(
+                // margin: EdgeInsets.symmetric(vertical: 20.0),
+                padding: EdgeInsets.only(top: 10, right: 20, left: 20),
+                height: 200,
+
+                child: ListView(
+                  physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      _buildProjects('Wander-View'),
-                      SizedBox(width: 12),
-                      _buildProjects('Comet-Watch'),
-                      SizedBox(width: 12),
-                      _buildProjects('Build-A-Page'),
-                      SizedBox(width: 12),
-                      _buildProjects('Code-Quiz'),
-                      SizedBox(width: 12),
-                      _buildProjects('Weather-Dashboard'),
-                      SizedBox(width: 12),
-                      _buildProjects('Workday-Scheduler'),
-                      SizedBox(width: 12),
-                      _buildProjects('Tech-Blog'),
-                      SizedBox(width: 12),
-                      _buildProjects('Password-Generator'),
-                      SizedBox(width: 12),
-                      _buildProjects('Note-Taker'),
-                      SizedBox(width: 12),
-                    ],
-                  ),
+                  children: <Widget>[
+                    MyProjects(
+                        "assets/project-images/WanderView.jpg", "WanderView"),
+                    SizedBox(width: 8),
+                    MyProjects(
+                        "assets/project-images/BuildAPage.jpg", "Build-A-Page"),
+                    SizedBox(width: 8),
+                    MyProjects(
+                        "assets/project-images/CometWatch.jpg", "Comet Watch"),
+                    SizedBox(width: 8),
+                    MyProjects("assets/project-images/WorkdayScheduler.jpg",
+                        "Workday Scheduler"),
+                    SizedBox(width: 8),
+                    MyProjects(
+                        "assets/project-images/NoteTaker.jpg", "Note Taker"),
+                    SizedBox(width: 8),
+                    MyProjects(
+                        "assets/project-images/CodeQuiz.jpg", "Code Quiz"),
+                    SizedBox(width: 8),
+                    MyProjects("assets/project-images/PasswordGenerator.jpg",
+                        "Password Generator"),
+                    SizedBox(width: 8),
+                    MyProjects("assets/project-images/WeatherDashboard.jpg",
+                        "Weather Dashboard"),
+                    SizedBox(width: 8),
+                    MyProjects(
+                        "assets/project-images/TechBlog.jpg", "Tech Blog"),
+                    SizedBox(width: 8),
+                    MyProjects(
+                        "assets/project-images/TextEditor.jpg", "Text Editor"),
+                  ],
                 ),
               ),
-              SizedBox(height: 10.0),
-              _buildCVTitle("Experience"),
-              _buildExperienceRow(
+              SizedBox(height: 30.0),
+              CVTitle("Experience"),
+              Experience(
                   company: "Arcadis",
-                  position: "Administration Assistant/Reception ",
+                  position: "Administration Assistant / Reception ",
                   duration: "2019 - 2021",
                   tasks: "\n\n- Answering incoming phone calls"
                       "\n- Responding to incoming emails"
@@ -117,7 +162,7 @@ class MyApp extends StatelessWidget {
                       "\n- Minute taking"
                       "\n- IT stock management & IT assistance"
                       "\n- New employee start ups"),
-              _buildExperienceRow(
+              Experience(
                   company: "Hillary’s / Kingsley Village Dental Centre",
                   position: "Dental Nurse",
                   duration: "2014 - 2019",
@@ -132,25 +177,24 @@ class MyApp extends StatelessWidget {
                       "\n- Social media management"
                       "\n- Organising social work events"),
               SizedBox(height: 20.0),
-              _buildCVTitle("Education"),
+              CVTitle("Education"),
               SizedBox(height: 5.0),
-              _buildEducationRow(
+              Education(
                   company: "University of Western Australia",
                   qualification:
-                      "Certificate of Coding Completion / Full Stack Developer ",
-                  duration: "2021 - 2022"
-                      ")\n\nA 24-week intensive program focused on gaining technical programming skills in HTML5 | CSS3 | JavaScript | jQuery | Bootstrap | NodeJS | MySQL | MongoDB | Express | HandlebarsJS & React"),
-              _buildEducationRow(
+                      "Certificate of Coding Completion / Full Stack Developer \n\nA 24-week intensive program focused on gaining technical programming skills in HTML5 | CSS3 | JavaScript | jQuery | Bootstrap | NodeJS | MySQL | MongoDB | Express | HandlebarsJS & React",
+                  duration: "2021 - 2022"),
+              Education(
                   company: "Open College Online Courses",
                   qualification:
                       "Cert IV in Business Administration & Cert IV in Leadership and Management",
                   duration: "2017 - 2019"),
-              _buildEducationRow(
+              Education(
                   company: "Dental Nursing Australia",
                   qualification: "Cert III & IV Dental Assisting",
                   duration: "2012 - 2013"),
               SizedBox(height: 20.0),
-              _buildCVTitle("Contact"),
+              CVTitle("Contact"),
               SizedBox(height: 5.0),
               Row(
                 children: <Widget>[
@@ -158,11 +202,12 @@ class MyApp extends StatelessWidget {
                   Icon(
                     Icons.mail,
                     color: Color(0xFF1671BB),
+                    size: 30,
                   ),
                   SizedBox(width: 10.0),
                   Text(
                     "liz.mackle@outlook.com",
-                    style: TextStyle(fontSize: 16.0),
+                    style: TextStyle(fontSize: 16.0, color: Colors.black),
                   ),
                 ],
               ),
@@ -173,208 +218,23 @@ class MyApp extends StatelessWidget {
                   Icon(
                     Icons.phone,
                     color: Colors.black,
+                    size: 30,
                   ),
                   SizedBox(width: 10.0),
+                  SizedBox(height: 40.0),
                   Text(
                     "0426 239 870",
-                    style: TextStyle(fontSize: 16.0),
+                    style: TextStyle(fontSize: 16.0, color: Colors.black),
                   ),
                 ],
               ),
-              _buildSocialsRow(),
+              SizedBox(height: 10.0),
+              Socials(),
               SizedBox(height: 20.0),
             ],
           ),
         ),
       ),
     );
-  }
-
-  Row _Header() {
-    return Row(
-      children: <Widget>[
-        SizedBox(width: 20.0),
-        Container(
-            width: 130.0,
-            height: 130.0,
-            child: CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.black,
-                child: CircleAvatar(
-                    radius: 62.0,
-                    backgroundImage: AssetImage('assets/LMCVimg.jpg')))),
-        SizedBox(width: 20.0),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "Elizabeth Mackle",
-              style: TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              "Full Stack Developer",
-              style: TextStyle(fontSize: 16.0),
-            ),
-            SizedBox(height: 10.0),
-            Row(
-              children: <Widget>[
-                Icon(
-                  FontAwesomeIcons.locationPin,
-                  size: 13.0,
-                  color: Colors.black54,
-                ),
-                SizedBox(width: 4.0),
-                Text(
-                  "Perth, WA",
-                  style: TextStyle(color: Colors.black54),
-                ),
-              ],
-            ),
-          ],
-        )
-      ],
-    );
-  }
-}
-
-Widget _buildCVTitle(String title) {
-  return Padding(
-    padding: const EdgeInsets.only(left: 16.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          title.toUpperCase(),
-          style: TextStyle(fontSize: 19.0, fontWeight: FontWeight.bold),
-        ),
-        Divider(
-          color: Colors.black54,
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _buildSkillRow(image) => Container(
-      width: 70,
-      height: 100,
-      decoration: BoxDecoration(
-        // borderRadius: BorderRadius.circular(20),
-        color: Colors.transparent,
-      ),
-      child: Column(
-        children: [
-          Image.asset("assets/skills-images/$image.jpg"),
-          const SizedBox(height: 2),
-          // Text(
-          //   image.toString().replaceAll('-', ' '),
-          //   style: TextStyle(fontSize: 12),
-          // ),
-        ],
-      ),
-    );
-
-Widget _buildProjects(image) => Container(
-      width: 250,
-      height: 200,
-      decoration: BoxDecoration(
-        // borderRadius: BorderRadius.circular(10),
-        color: Colors.transparent,
-      ),
-      child: Column(
-        children: [
-          Image.asset("assets/project-images/$image.jpg"),
-          const SizedBox(height: 8),
-          Text(
-            image.toString().replaceAll('-', ' '),
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-    );
-
-ListTile _buildExperienceRow(
-    {required String company,
-    String? position,
-    String? duration,
-    String? tasks}) {
-  return ListTile(
-    leading: Padding(
-      padding: const EdgeInsets.only(top: 8.0, left: 20.0),
-      child: Icon(
-        FontAwesomeIcons.solidCircle,
-        size: 8.0,
-        color: Colors.black54,
-      ),
-    ),
-    title: Text(
-      company,
-      style: TextStyle(
-          fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
-    ),
-    subtitle:
-        Text(style: TextStyle(fontSize: 15), "$position $duration $tasks"),
-  );
-}
-
-ListTile _buildEducationRow(
-    {required String company, String? qualification, String? duration}) {
-  return ListTile(
-    leading: Padding(
-      padding: const EdgeInsets.only(top: 8.0, left: 20.0),
-      child: Icon(
-        FontAwesomeIcons.solidCircle,
-        size: 8.0,
-        color: Colors.black54,
-      ),
-    ),
-    title: Text(
-      company,
-      style: TextStyle(
-          fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
-    ),
-    subtitle:
-        Text(style: TextStyle(fontSize: 15), "$qualification ($duration)"),
-  );
-}
-
-Row _buildSocialsRow() {
-  return Row(
-    children: <Widget>[
-      SizedBox(width: 20.0),
-      IconButton(
-        color: Colors.black,
-        icon: Icon(FontAwesomeIcons.solidUser),
-        onPressed: () {
-          _launchURL("https://lizmackle.github.io/React_Portfolio/");
-        },
-      ),
-      SizedBox(width: 0),
-      IconButton(
-        color: Colors.black,
-        icon: Icon(FontAwesomeIcons.github),
-        onPressed: () {
-          _launchURL("https://github.com/LizMackle");
-        },
-      ),
-      SizedBox(width: 0),
-      IconButton(
-        color: Color(0xFF1671BB),
-        icon: Icon(FontAwesomeIcons.linkedin),
-        onPressed: () {
-          _launchURL("https://www.linkedin.com/in/liz-mackle/");
-        },
-      ),
-      SizedBox(width: 10.0),
-    ],
-  );
-}
-
-_launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
   }
 }
