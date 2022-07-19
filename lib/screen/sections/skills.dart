@@ -9,7 +9,7 @@ Widget SkillsRow(image) => Container(
       ),
       child: Column(
         children: [
-          Image.asset("assets/skills-images/$image.jpg"),
+          Image.asset("assets/skills/$image.jpg"),
           const SizedBox(height: 4),
           Text(
             image.toString().replaceAll('-', ' '),
